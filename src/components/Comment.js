@@ -1,17 +1,25 @@
 import Rating from "./Rating.js";
 import replyIcon from "../images/icon-reply.svg";
-// import editIcon from "../images/icon-edit.svg";
-// import deleteIcon from "../images/icon-delete.svg";
+import editIcon from "../images/icon-edit.svg";
+import deleteIcon from "../images/icon-delete.svg";
 
 export default function Comment(props) {
     const data = props.data;
     const hasReplies = data["replies"] && data.replies.length > 0;
+    const isYou = data.user.username === props.currentUser.username;
 
     const replies = () => {
         if (data["replies"]) {
             if (data.replies.length !== 0) {
                 return data.replies.map((reply) => {
-                    return <Comment key={reply.id} data={reply}></Comment>;
+                    return (
+                        <Comment
+                            key={reply.id}
+                            data={reply}
+                            currentUser={props.currentUser}
+                            deleteComment={() => props.deleteComment(reply.id)}
+                        ></Comment>
+                    );
                 });
             }
         }
@@ -30,10 +38,33 @@ export default function Comment(props) {
                             className="avatar"
                         ></img>
                         <span className="username">{data.user.username}</span>
+                        {isYou && (
+                            <div className="comment-you">
+                                <span>you</span>
+                            </div>
+                        )}
                         <span className="created-at">{data.createdAt}</span>
-                        <div className="blue-button">
-                            <img src={replyIcon} alt=""></img>
-                            <span>Reply</span>
+                        <div className="comment-buttons">
+                            {isYou ? (
+                                <div className="you-button">
+                                    <div
+                                        className="comment-delete"
+                                        onClick={() => props.deleteComment(props.data.id)}
+                                    >
+                                        <img src={deleteIcon} alt=""></img>
+                                        <span>Delete</span>
+                                    </div>
+                                    <div className="edit-button">
+                                        <img src={editIcon} alt=""></img>
+                                        <span>Edit</span>
+                                    </div>
+                                </div>
+                            ) : (
+                                <div className="blue-button">
+                                    <img src={replyIcon} alt=""></img>
+                                    <span>Reply</span>
+                                </div>
+                            )}
                         </div>
                     </div>
                     <p>{data.content}</p>

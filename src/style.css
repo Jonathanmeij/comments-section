@@ -5,6 +5,8 @@
     --Dark-blue: hsl(212, 24%, 26%);
     --Moderate-blue: hsl(238, 40%, 52%);
     --Grayish-blue: hsl(211, 10%, 45%);
+    --soft-red: hsl(358, 79%, 66%);
+    --header-gray: hsl(212, 24%, 26%);
 }
 
 html,
@@ -36,7 +38,7 @@ span {
 
 .username {
     font-weight: 500;
-    padding: 0 15px;
+    padding: 0 8px;
     color: rgb(56, 56, 56);
 }
 
@@ -46,7 +48,7 @@ span {
     align-items: flex-start;
 
     background-color: white;
-    margin: 15px;
+    margin: 10px;
     padding: 20px;
     border-radius: 10px;
     color: var(--Grayish-blue);
@@ -65,6 +67,7 @@ span {
 
 .created-at {
     margin-right: auto;
+    margin-left: 15px;
 }
 
 .rating-container {
@@ -80,36 +83,132 @@ span {
     font-weight: 500;
 }
 
+.count-button {
+    color: rgb(170, 170, 170);
+}
+
 .count {
     margin: 5px 0;
     color: var(--Moderate-blue);
 }
 
-.blue-button {
+.blue-button > span {
     color: var(--Moderate-blue);
+    font-weight: 400;
+    padding-left: 5px;
+}
+
+.edit-button > span {
+    color: var(--Moderate-blue);
+    font-weight: 400;
+    padding-left: 5px;
+}
+
+.you-button {
+    display: flex;
+}
+
+.comment-delete {
+    color: var(--soft-red);
+    font-weight: 400;
+    margin-right: 15px;
+    cursor: pointer;
+}
+
+.comment-delete span {
+    margin-left: 5px;
+}
+
+.comment-you {
+    background-color: var(--Moderate-blue);
+    color: white;
+    padding: 2px 5px;
+    border-radius: 3px;
+    font-size: 0.8rem;
+    font-weight: 400;
 }
 
 .avatar {
     height: 35px;
 }
 
-.blue-button > span {
-    padding-left: 5px;
-}
-
 .replies-divider {
     border-right: 2px solid rgb(230, 230, 230);
     align-self: stretch;
-    margin-right: 15px;
+    margin-right: 10px;
     margin-left: 50px;
-    margin-top: 15px;
-    margin-bottom: 15px;
+    margin-top: 10px;
+    margin-bottom: 10px;
 }
 
 .replies {
     display: flex;
     align-items: flex-start;
     position: relative;
+}
+
+.modal-background {
+    position: fixed;
+    height: 100%;
+    width: 100%;
+    top: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.418);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-container {
+    background-color: white;
+    max-width: 300px;
+    padding: 20px;
+    border-radius: 10px;
+    margin: 20px;
+}
+
+.modal-container h2 {
+    margin-bottom: 15px;
+    color: var(--header-gray);
+}
+
+.modal-container p {
+    margin-bottom: 15px;
+    font-size: 1rem;
+    color: var(--Grayish-blue);
+    font-weight: 300;
+}
+
+.modal-button {
+    border-style: none;
+    font-size: 1rem;
+    padding: 10px 20px;
+    border-radius: 6px;
+    font-weight: 500;
+    cursor: pointer;
+}
+
+.modal-buttons-container {
+    display: flex;
+}
+
+.button-cancel {
+    margin-right: 10px;
+    background-color: var(--Grayish-blue);
+    color: white;
+}
+
+.button-proceed {
+    background-color: var(--soft-red);
+    color: white;
+}
+
+.button-cancel:hover {
+    background-color: hsl(212, 10%, 33%);
+}
+
+.button-proceed:hover {
+    background-color: hsl(358, 62%, 62%);
 }
 
 @media screen and (max-width: 600px) {
@@ -130,6 +229,12 @@ span {
     }
 
     .blue-button {
+        position: absolute;
+        bottom: 30px;
+        right: 30px;
+    }
+
+    .you-button {
         position: absolute;
         bottom: 30px;
         right: 30px;
