@@ -1,7 +1,8 @@
 # Comment section React
 
 This is a comments section build with React. 
-project is from [Frontend Mentor](https://www.frontendmentor.io/challenges/interactive-comments-section-iG1RugEG9)
+
+project from [Frontend Mentor](https://www.frontendmentor.io/challenges/interactive-comments-section-iG1RugEG9)
 
 Features:
 - Load comments from JSON
