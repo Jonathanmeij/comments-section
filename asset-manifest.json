@@ -1,16 +1,16 @@
 {
   "files": {
-    "main.css": "/static/css/main.6ff3b7de.css",
-    "main.js": "/static/js/main.67a5d770.js",
-    "index.html": "/index.html",
-    "static/media/icon-edit.svg": "/static/media/icon-edit.b0c7f9ebaec367bd3ae2539df8b55ff9.svg",
-    "static/media/icon-reply.svg": "/static/media/icon-reply.bfb4589d45cd96abd45e3b82f7e7bbc6.svg",
-    "static/media/icon-delete.svg": "/static/media/icon-delete.86cedbf2e37529f9c8f1f744254059b0.svg",
-    "main.6ff3b7de.css.map": "/static/css/main.6ff3b7de.css.map",
-    "main.67a5d770.js.map": "/static/js/main.67a5d770.js.map"
+    "main.css": "/comments-section/static/css/main.6ff3b7de.css",
+    "main.js": "/comments-section/static/js/main.58b75c58.js",
+    "index.html": "/comments-section/index.html",
+    "static/media/icon-edit.svg": "/comments-section/static/media/icon-edit.b0c7f9ebaec367bd3ae2539df8b55ff9.svg",
+    "static/media/icon-reply.svg": "/comments-section/static/media/icon-reply.bfb4589d45cd96abd45e3b82f7e7bbc6.svg",
+    "static/media/icon-delete.svg": "/comments-section/static/media/icon-delete.86cedbf2e37529f9c8f1f744254059b0.svg",
+    "main.6ff3b7de.css.map": "/comments-section/static/css/main.6ff3b7de.css.map",
+    "main.58b75c58.js.map": "/comments-section/static/js/main.58b75c58.js.map"
   },
   "entrypoints": [
     "static/css/main.6ff3b7de.css",
-    "static/js/main.67a5d770.js"
+    "static/js/main.58b75c58.js"
   ]
 }
