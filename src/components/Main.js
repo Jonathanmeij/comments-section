@@ -30,6 +30,24 @@ export default function Main() {
         setShowDeleteModal(true);
     }
 
+    function handleRateChange(id, newValue) {
+        setComments((prevComments) => {
+            let oldArray = prevComments;
+
+            oldArray = oldArray.map((comment) =>
+                comment.id === id ? { ...comment, score: newValue } : comment
+            );
+
+            oldArray.forEach((comment, index) => {
+                oldArray[index].replies = comment.replies.map((comment) =>
+                    comment.id === id ? { ...comment, score: newValue } : comment
+                );
+            });
+
+            return oldArray;
+        });
+    }
+
     const dataElements = comments.map((element) => {
         return (
             <Comment
@@ -37,6 +55,7 @@ export default function Main() {
                 data={element}
                 currentUser={currentUser}
                 deleteComment={handleDelete}
+                rateChange={handleRateChange}
             />
         );
     });

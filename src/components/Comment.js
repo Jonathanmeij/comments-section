@@ -9,19 +9,18 @@ export default function Comment(props) {
     const isYou = data.user.username === props.currentUser.username;
 
     const replies = () => {
-        if (data["replies"]) {
-            if (data.replies.length !== 0) {
-                return data.replies.map((reply) => {
-                    return (
-                        <Comment
-                            key={reply.id}
-                            data={reply}
-                            currentUser={props.currentUser}
-                            deleteComment={() => props.deleteComment(reply.id)}
-                        ></Comment>
-                    );
-                });
-            }
+        if (data["replies"] && data.replies.length !== 0) {
+            return data.replies.map((reply) => {
+                return (
+                    <Comment
+                        key={reply.id}
+                        data={reply}
+                        currentUser={props.currentUser}
+                        deleteComment={() => props.deleteComment(reply.id)}
+                        rateChange={props.rateChange}
+                    ></Comment>
+                );
+            });
         }
     };
 
@@ -29,7 +28,7 @@ export default function Comment(props) {
     return (
         <div className="comment-section">
             <div className="comment-container">
-                <Rating data={data} />
+                <Rating data={data} rateChange={props.rateChange} id={data.id} />
                 <div className="comment-content">
                     <div className="comment-top">
                         <img

@@ -85,6 +85,11 @@ span {
 
 .count-button {
     color: rgb(170, 170, 170);
+    cursor: pointer;
+}
+
+.count-button:hover {
+    color: rgb(100, 100, 100);
 }
 
 .count {
@@ -96,6 +101,11 @@ span {
     color: var(--Moderate-blue);
     font-weight: 400;
     padding-left: 5px;
+    cursor: pointer;
+}
+
+.blue-button:hover {
+    opacity: 75%;
 }
 
 .edit-button > span {
@@ -106,6 +116,11 @@ span {
 
 .you-button {
     display: flex;
+    cursor: pointer;
+}
+
+.you-button > div:hover {
+    opacity: 75%;
 }
 
 .comment-delete {
