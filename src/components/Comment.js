@@ -2,6 +2,7 @@ import Rating from "./Rating.js";
 import replyIcon from "../images/icon-reply.svg";
 import editIcon from "../images/icon-edit.svg";
 import deleteIcon from "../images/icon-delete.svg";
+import Buttons from "./Buttons.js";
 
 export default function Comment(props) {
     const data = props.data;
@@ -43,28 +44,14 @@ export default function Comment(props) {
                             </div>
                         )}
                         <span className="created-at">{data.createdAt}</span>
-                        <div className="comment-buttons">
-                            {isYou ? (
-                                <div className="you-button">
-                                    <div
-                                        className="comment-delete"
-                                        onClick={() => props.deleteComment(props.data.id)}
-                                    >
-                                        <img src={deleteIcon} alt=""></img>
-                                        <span>Delete</span>
-                                    </div>
-                                    <div className="edit-button">
-                                        <img src={editIcon} alt=""></img>
-                                        <span>Edit</span>
-                                    </div>
-                                </div>
-                            ) : (
-                                <div className="blue-button">
-                                    <img src={replyIcon} alt=""></img>
-                                    <span>Reply</span>
-                                </div>
-                            )}
-                        </div>
+                        <Buttons
+                            data={data}
+                            isYou={isYou}
+                            deleteComment={props.deleteComment}
+                            deleteIcon={deleteIcon}
+                            editIcon={editIcon}
+                            replyIcon={replyIcon}
+                        />
                     </div>
                     <p>{data.content}</p>
                 </div>
