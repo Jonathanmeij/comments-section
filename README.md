@@ -6,11 +6,11 @@ project from [Frontend Mentor](https://www.frontendmentor.io/challenges/interact
 
 Features:
 - Load comments from JSON
-- Rate comment (in progres)
-- Reply to Comment (in progres)
+- Rate comment
+- Reply to Comment
 - Delete comment
 - Edit own comment (in progres)
-- Write a new comment (in progres)
+- Write a new comment
 
 demo:
 https://jonathanmeij.github.io/comments-section/
