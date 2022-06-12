@@ -143,6 +143,9 @@ span {
     font-weight: 400;
 }
 
+.comment-content {
+    flex-grow: 100;
+}
 .avatar {
     height: 35px;
 }
@@ -224,6 +227,39 @@ span {
 
 .button-proceed:hover {
     background-color: hsl(358, 62%, 62%);
+}
+
+textarea {
+    resize: none;
+    border: 1px solid rgb(216, 216, 216);
+    border-radius: 6px;
+    padding: 10px 15px;
+    flex-grow: 1;
+    height: 4rem;
+    margin: 0 10px;
+    font-family: inherit;
+    color: var(--Grayish-blue);
+    font-weight: 300;
+    font-size: 1rem;
+}
+
+textarea:focus {
+    outline: none;
+    border: 1px solid rgb(90, 90, 90);
+}
+
+.editor-button {
+    background-color: var(--Moderate-blue);
+    color: white;
+    border-style: none;
+    padding: 8px;
+    min-width: 4.5rem;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.editor-button:hover {
+    opacity: 75%;
 }
 
 @media screen and (max-width: 600px) {

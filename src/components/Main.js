@@ -1,10 +1,11 @@
 import { useState } from "react";
 import jsonData from "../data.json";
 import Comment from "./Comment";
+import CommentEditor from "./CommentEditor";
 import DeleteModal from "./DeleteModal";
 
 export default function Main() {
-    const [comments, setComments] = useState(jsonData.comments);
+    const [comments, setComments] = useState(() => jsonData.comments);
     const [currentUser] = useState(jsonData.currentUser);
     const [showDeleteModal, setShowDeleteModal] = useState(false);
     const [deleteCommentId, setDeleteCommentId] = useState();
@@ -48,6 +49,25 @@ export default function Main() {
         });
     }
 
+    function addComment(comment) {
+        setComments((prevComments) => {
+            return [...prevComments, comment];
+        });
+    }
+
+    function addReply(id, newComment) {
+        setComments((prevComments) => {
+            let oldArray = [];
+            oldArray = prevComments.map((comment) => {
+                return comment.id === id
+                    ? { ...comment, replies: [...comment.replies, newComment] }
+                    : comment;
+            });
+            console.log(oldArray);
+            return oldArray;
+        });
+    }
+
     const dataElements = comments.map((element) => {
         return (
             <Comment
@@ -56,6 +76,7 @@ export default function Main() {
                 currentUser={currentUser}
                 deleteComment={handleDelete}
                 rateChange={handleRateChange}
+                addReply={addReply}
             />
         );
     });
@@ -69,6 +90,7 @@ export default function Main() {
                     deleteComment={() => deleteCommentFromArray(deleteCommentId)}
                 />
             )}
+            <CommentEditor currentUser={currentUser} addComment={addComment} />
         </div>
     );
 }
