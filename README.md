@@ -7,7 +7,7 @@ project from [Frontend Mentor](https://www.frontendmentor.io/challenges/interact
 Features:
 - Load comments from JSON
 - Rate comment
-- Reply to Comment
+- Reply to comment
 - Delete comment
 - Edit own comment (in progres)
 - Write a new comment
