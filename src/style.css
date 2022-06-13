@@ -144,7 +144,11 @@ span {
 }
 
 .comment-content {
-    flex-grow: 100;
+    flex: auto;
+}
+
+.reply-container {
+    flex: auto;
 }
 .avatar {
     height: 35px;

@@ -8,6 +8,7 @@ export default function Comment(props) {
     const hasReplies = data["replies"] && data.replies.length > 0;
     const isYou = data.user.username === props.currentUser.username;
     const [showReplyEditor, setShowReplyEditor] = useState(false);
+    const isReply = data["replyingTo"];
 
     const replies = () => {
         if (data["replies"] && data.replies.length !== 0) {
@@ -19,12 +20,14 @@ export default function Comment(props) {
                         currentUser={props.currentUser}
                         deleteComment={() => props.deleteComment(reply.id)}
                         rateChange={props.rateChange}
+                        addReply={props.addReply}
                     ></Comment>
                 );
             });
         }
     };
 
+    console.log(data.id + " " + isReply);
     function handleReply() {
         setShowReplyEditor((prev) => !prev);
         // props.addReply(props.id, content);
@@ -81,7 +84,7 @@ export default function Comment(props) {
             {/* replies */}
             <div className="replies">
                 {hasReplies && <div className="replies-divider"></div>}
-                <div>{replyElements}</div>
+                <div className="reply-container">{replyElements}</div>
             </div>
         </div>
     );
