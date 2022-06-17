@@ -8,7 +8,7 @@ export default function Comment(props) {
     const hasReplies = data["replies"] && data.replies.length > 0;
     const isYou = data.user.username === props.currentUser.username;
     const [showReplyEditor, setShowReplyEditor] = useState(false);
-    const isReply = data["replyingTo"];
+    const isReply = data["replyingTo"] ? true : false;
 
     const replies = () => {
         if (data["replies"] && data.replies.length !== 0) {
@@ -16,6 +16,7 @@ export default function Comment(props) {
                 return (
                     <Comment
                         key={reply.id}
+                        parentId={data.id}
                         data={reply}
                         currentUser={props.currentUser}
                         deleteComment={() => props.deleteComment(reply.id)}
@@ -27,13 +28,14 @@ export default function Comment(props) {
         }
     };
 
-    console.log(data.id + " " + isReply);
-    function handleReply() {
+    function openCommentEditor() {
         setShowReplyEditor((prev) => !prev);
-        // props.addReply(props.id, content);
     }
 
-    function addComment(content) {
+    function addComment(content, parentName) {
+        if (isReply) {
+            props.addReply(props.parentId, content);
+        }
         props.addReply(data.id, content);
         setShowReplyEditor(false);
     }
@@ -66,19 +68,24 @@ export default function Comment(props) {
                             data={data}
                             isYou={isYou}
                             deleteComment={props.deleteComment}
-                            handleReply={handleReply}
+                            openCommentEditor={openCommentEditor}
                         />
                     </div>
 
                     {/* comment content */}
-                    <p className="content">{data.content}</p>
+                    <div className="content">{data.content}</div>
                 </div>
             </div>
 
             {/* reply editor */}
 
             {showReplyEditor && (
-                <CommentEditor currentUser={props.currentUser} addComment={addComment} />
+                <CommentEditor
+                    currentUser={props.currentUser}
+                    addComment={addComment}
+                    isReply={isReply}
+                    parentName={data.user.username}
+                />
             )}
 
             {/* replies */}

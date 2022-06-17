@@ -11,7 +11,14 @@ export default function CommentEditor(props) {
     function handleSubmit() {
         const comment = {
             id: nanoid(),
-            content: textArea,
+            content: props.isReply ? (
+                <div>
+                    <span className="mention">{"@" + props.parentName + " "}</span>
+                    {textArea}
+                </div>
+            ) : (
+                textArea
+            ),
             createdAt: "now",
             score: 0,
             user: {

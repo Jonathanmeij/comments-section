@@ -266,6 +266,12 @@ textarea:focus {
     opacity: 75%;
 }
 
+.mention {
+    color: var(--Moderate-blue);
+    font-weight: 400;
+    cursor: pointer;
+}
+
 @media screen and (max-width: 600px) {
     .comment-container {
         flex-direction: column-reverse;

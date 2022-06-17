@@ -63,7 +63,6 @@ export default function Main() {
                     ? { ...comment, replies: [...comment.replies, newComment] }
                     : comment;
             });
-            console.log(oldArray);
             return oldArray;
         });
     }

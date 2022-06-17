@@ -20,7 +20,7 @@ export default function Buttons(props) {
                     </div>
                 </div>
             ) : (
-                <div className="blue-button" onClick={props.handleReply}>
+                <div className="blue-button" onClick={props.openCommentEditor}>
                     <img src={replyIcon} alt=""></img>
                     <span>Reply</span>
                 </div>
