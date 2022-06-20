@@ -9,7 +9,7 @@ Features:
 - Rate comment
 - Reply to comment
 - Delete comment
-- Edit own comment (in progres)
+- Edit own comment
 - Write a new comment
 
 demo:
