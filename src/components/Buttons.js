@@ -14,7 +14,7 @@ export default function Buttons(props) {
                         <img src={deleteIcon} alt=""></img>
                         <span>Delete</span>
                     </div>
-                    <div className="edit-button">
+                    <div onClick={props.toggleEdit} className="edit-button">
                         <img src={editIcon} alt=""></img>
                         <span>Edit</span>
                     </div>

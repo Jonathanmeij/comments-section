@@ -1,7 +1,7 @@
 import { useState } from "react";
 import jsonData from "../data.json";
 import Comment from "./Comment";
-import CommentEditor from "./CommentEditor";
+import CommentMaker from "./CommentMaker";
 import DeleteModal from "./DeleteModal";
 
 export default function Main() {
@@ -67,6 +67,24 @@ export default function Main() {
         });
     }
 
+    function handleEdit(id, newContent) {
+        setComments((prevComments) => {
+            let oldArray = prevComments;
+
+            oldArray = oldArray.map((comment) =>
+                comment.id === id ? { ...comment, content: newContent } : comment
+            );
+
+            oldArray.forEach((comment, index) => {
+                oldArray[index].replies = comment.replies.map((comment) =>
+                    comment.id === id ? { ...comment, content: newContent } : comment
+                );
+            });
+
+            return oldArray;
+        });
+    }
+
     const dataElements = comments.map((element) => {
         return (
             <Comment
@@ -76,6 +94,7 @@ export default function Main() {
                 deleteComment={handleDelete}
                 rateChange={handleRateChange}
                 addReply={addReply}
+                handleEdit={handleEdit}
             />
         );
     });
@@ -89,7 +108,7 @@ export default function Main() {
                     deleteComment={() => deleteCommentFromArray(deleteCommentId)}
                 />
             )}
-            <CommentEditor currentUser={currentUser} addComment={addComment} />
+            <CommentMaker currentUser={currentUser} addComment={addComment} />
         </div>
     );
 }

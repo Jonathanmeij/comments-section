@@ -1,7 +1,9 @@
 import Rating from "./Rating.js";
-import Buttons from "./Buttons.js";
+import CommentTop from "./CommentTop.js";
+import CommentContent from "./CommentContent.js";
 import { useState } from "react";
-import CommentEditor from "./CommentEditor.js";
+import CommentMaker from "./CommentMaker.js";
+import CommentEdit from "./CommentEdit.js";
 
 export default function Comment(props) {
     const data = props.data;
@@ -9,6 +11,7 @@ export default function Comment(props) {
     const isYou = data.user.username === props.currentUser.username;
     const [showReplyEditor, setShowReplyEditor] = useState(false);
     const isReply = data["replyingTo"] ? true : false;
+    const [isEditing, setIsEditing] = useState(false);
 
     const replies = () => {
         if (data["replies"] && data.replies.length !== 0) {
@@ -22,6 +25,7 @@ export default function Comment(props) {
                         deleteComment={() => props.deleteComment(reply.id)}
                         rateChange={props.rateChange}
                         addReply={props.addReply}
+                        handleEdit={props.handleEdit}
                     ></Comment>
                 );
             });
@@ -40,47 +44,42 @@ export default function Comment(props) {
         setShowReplyEditor(false);
     }
 
+    function toggleEdit() {
+        setIsEditing((prev) => !prev);
+    }
+
     const replyElements = replies();
 
     return (
         <div className="comment-section">
+            {/* comment */}
+
             <div className="comment-container">
-                {/* like and dislike  */}
                 <Rating data={data} rateChange={props.rateChange} id={data.id} />
                 <div className="comment-content">
-                    {/* comment header with profile picture, name, date */}
-                    <div className="comment-top">
-                        <img
-                            src={require(`../images/avatars/image-${data.user.username}.png`)}
-                            alt=""
-                            className="avatar"
-                        ></img>
-                        <span className="username">{data.user.username}</span>
-                        {isYou && (
-                            <div className="comment-you">
-                                <span>you</span>
-                            </div>
-                        )}
-                        <span className="created-at">{data.createdAt}</span>
-
-                        {/* buttons for reply, delete, edit */}
-                        <Buttons
+                    <CommentTop
+                        data={data}
+                        isYou={isYou}
+                        openCommentEditor={openCommentEditor}
+                        toggleEdit={toggleEdit}
+                    />
+                    {isEditing ? (
+                        <CommentEdit
                             data={data}
-                            isYou={isYou}
-                            deleteComment={props.deleteComment}
-                            openCommentEditor={openCommentEditor}
+                            toggleEdit={toggleEdit}
+                            handleEdit={props.handleEdit}
+                            id={data.id}
                         />
-                    </div>
-
-                    {/* comment content */}
-                    <div className="content">{data.content}</div>
+                    ) : (
+                        <CommentContent data={data} isReply={isReply} />
+                    )}
                 </div>
             </div>
 
             {/* reply editor */}
 
             {showReplyEditor && (
-                <CommentEditor
+                <CommentMaker
                     currentUser={props.currentUser}
                     addComment={addComment}
                     isReply={isReply}
@@ -89,6 +88,7 @@ export default function Comment(props) {
             )}
 
             {/* replies */}
+
             <div className="replies">
                 {hasReplies && <div className="replies-divider"></div>}
                 <div className="reply-container">{replyElements}</div>
