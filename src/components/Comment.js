@@ -62,6 +62,7 @@ export default function Comment(props) {
                         isYou={isYou}
                         openCommentEditor={openCommentEditor}
                         toggleEdit={toggleEdit}
+                        deleteComment={props.deleteComment}
                     />
                     {isEditing ? (
                         <CommentEdit
